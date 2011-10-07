@@ -37,11 +37,11 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
   printf("Estoque: "); qtd_est
   printf("Venda:   "); qtd_ped
   printf("A "); grade
-  printf("Atendimento minino: %d [porcento]\n", atend_min);
-  printf("Atendimento maximo (para compensar frete): %d [porcento]\n", atend_min);
+  printf("Atendimento minino: %d %%\n", atend_min);
+  printf("Atendimento maximo (para compensar frete): %d %%\n", atend_min);
   printf("-------------------------------------\n\n");
 
-  printf("Tipo A - RespeitaGrade && 100Ref:\n")
+  printf("Tipo A - RespeitaGrade && 100%%Ref:\n")
   % respeita grade
   A=false;
   if mean(atend_p_item) < 100
@@ -52,15 +52,15 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
   endif
   printf("-------------------------------------\n\n");
 
-  printf("Tipo B - RespeitaGrade e !100Ref:\n");
+  printf("Tipo B - RespeitaGrade e !100%%Ref:\n");
   if A == true;
     printf("Status:  Pedido COMPLETAMENTE ATENDIDO\n\n");
   else
     if atend < atend_min
-      printf("Atendimento(%d) menor que atendimento minimo(%d)\n", atend, atend_min);
+      printf("Atendimento(%d%%) menor que atendimento minimo(%d%%)\n", atend, atend_min);
       printf("Status: Pedido em ESPERA\n\n");
     elseif atend > atend_max
-      printf("Atendimento(%d) maior que atendimento maximo(%d)\n", atend, atend_max);
+      printf("Atendimento(%d%%) maior que atendimento maximo(%d%%)\n", atend, atend_max);
       printf("Status: Pedido em ESPERA\n\n");
     else
       printf("Status: Pedido ATENDIDO PARCIALMENTE\n");
@@ -72,7 +72,7 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
   endif
   printf("-------------------------------------\n\n");
 
-  printf("Tipo C - !RespeitaGrade e !100Ref:\n");
+  printf("Tipo C - !RespeitaGrade e !100%%Ref:\n");
   if A == true;
     printf("Status: Pedido COMPLETAMENTE ATENDIDO\n\n");
   else
@@ -80,7 +80,7 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
       qtd_atend(i)=min(qtd_est(i),qtd_ped(i));
     endfor
     if mean(qtd_atend./qtd_ped) > atend_max
-      printf("Atendimento(%d) maior que atendimento maximo(%d)\n", atend, atend_max);
+      printf("Atendimento(%d%%) maior que atendimento maximo(%d%%)\n", atend, atend_max);
       printf("Status: Pedido em ESPERA\n\n");
     else
       printf("Status: Pedido ATENDIDO PARCIALMENTE\n");
