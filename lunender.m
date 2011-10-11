@@ -52,7 +52,7 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
   printf("Venda:   "); qtd_ped
   printf("A "); grade
   printf("Atendimento minino: %d %%\n", atend_min);
-  printf("Atendimento maximo (para compensar frete): %d %%\n", atend_min);
+  printf("Atendimento maximo (para compensar frete): %d %%\n", atend_max);
   printf("-------------------------------------\n\n");
 
   printf("Tipo A - RespeitaGrade && 100%%Ref:\n")
@@ -80,7 +80,7 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
       printf("Status: Pedido ATENDIDO PARCIALMENTE\n");
       printf("O pedido é: ");
       qtd_ped
-      printf("Sera atendido: ");
+      printf("Sera atendido %d%% : ", atend);
       round((atend/100)*qtd_ped)
     endif
   endif
@@ -100,7 +100,8 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
       printf("Status: Pedido ATENDIDO PARCIALMENTE\n");
       printf("O pedido é: ");
       qtd_ped
-      printf("Sera atendido: ");
+      atend=100*sum(qtd_atend)/sum(qtd_ped);
+      printf("Sera atendido %d%% : ", atend);
       qtd_atend
     endif
   endif
