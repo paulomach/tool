@@ -2,11 +2,20 @@
 ## @deftypefn  {Function File} {} lunender (@var{qtd_ped}, @var{qtd_est}, @var{atend_min}, @var{atend_max})
 ## dado vetores de qtd_ped (quantidade de pedidos) e qtd_est(quantidade em estoque),
 ## e porcentagem de atend_min e atend_max
+
+## DataBase required data:
 ## qtd_ped:
 ##  SELECT t.pedite_quantidade FROM tool_pedido_item t WHERE t.id_pedido = :id_pedido
 ## qtd_est:
 ##  SELECT t.pec_wms_saldo FROM tool_peca t WHERE (SELECT a.id_pedido FROM tool_pedido_item
 ##    WHERE a.id_peca = t.id_peca) = :id_pedido
+## atend_min, atend_max, tipo (a||b||c):
+##  SELECT t.ped_atend_min t.ped_atend_max t.ped_tipo FROM tool_pedido t WHERE t.id_pedido = :id_pedido
+
+## Return:
+## atend_atual:
+##  UPDATE tool_pedido t SET t.ped_atend_atual = :atend_atual WHERE t.id_pedido = :id_pedido
+##
 
 function lunender (qtd_ped, qtd_est, atend_min, atend_max)
 
