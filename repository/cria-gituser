@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Add user $1 "
+echo "Ctrl-c to exit"
+read
+
+useradd -d /home/$1 -m -s /usr/local/bin/gitcustomshell.sh $1
+
+gpasswd -a $1 gitusers
+
+echo "Don't forget to set the user password"
+echo "To do so:"
+echo "\$ passwd <user name>"
+
+# $ su [DEVELOPER]
+# $ ssh-keygen -t rsa
+# $ cp ~/.ssh/id_rsa.pub ~/[DEVELOPER]@gitrepo.pub
+# add the new public key to the gitolite keydir
+
