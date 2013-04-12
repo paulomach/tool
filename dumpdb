@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [[ $1 = "-h" || $1 = "--help" || -z $1 ]]; then
+	echo "Dump file for Oracle XE"
+	echo "Usage:"
+	echo "dumdb username <password>"
+	exit
+fi
+
+pass=$2
+pass=${pass:=$1}
+DATE=$(date +%Y-%m-%d)
+user="$1/${pass}"
+file="$1-${DATE}.dmp"
+
+exp userid=${user}@xe statistics=none owner=$1 file=${file}
+
+if [[ $? = 0 ]]; then
+	echo "Dump at file ${PWD}/${file}"
+	echo "Create zip [Y/n]?"
+	read -s -n 1 zipcreate
+	zipcreate=${zipcreate:="Y"}
+	if [[ ${zipcreate} = 'Y' ]]; then
+		echo "zipcreate"
+		zip -9 -r ${file}.zip $file
+	fi
+fi
+
