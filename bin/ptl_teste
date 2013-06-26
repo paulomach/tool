@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ $1 = "-h" || -z $1 ]]; then # || [[ $# -le 6 ]]; then	
+	echo "Put-To-Light Testing Script"
+	echo -e "Usage:\n$ ptl_teste <IP-PLC-GW> <PORT> <EXITS> <PTL/EXIT> [0/1] [interval]"
+	#                         $1         $2     $3        $4       $5     $6
+	echo -e "\nExample: Turning on PTL with 2 seconds interval"
+	echo -e " $ ptl_teste 192.168.0.10 2190 8 4 1 2\n"
+	exit
+fi
+
+MAX_PTL=10
+TCP_DEST="/dev/tcp/$1/$2"
+c=0
+# default turn off
+ACT=${5:-0}
+# default 1 second
+WAIT=${6:-1}
+
+for k in $(seq $3); do
+	for l in $(seq $MAX_PTL); do		
+		if [[ $l -le $4 ]]; then
+			echo "wrt $((4*$c)),$ACT" > $TCP_DEST
+			echo "rampa $k, ptl $l - wrt $((4*$c)),$ACT"
+			sleep $WAIT
+		fi
+		let c++
+	done
+	echo
+done
