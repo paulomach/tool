@@ -1,0 +1,17 @@
+git clone --bare <gitrepo>
+svnadmin create repo_temp
+cd repo_tmp
+subgit configure .
+vim .svn/conf/subgit.conf # apontar clone do repo bare do git
+# criar repo svn no VisualSVN
+# Add hook pre-prop-change no VisualSVN 
+# goto :eof
+svnrdump dump file://<path to svn repo> > dumpfile.dump 
+cat dumpfile.dump | svnrdump load https://<remote svn url>
+
+#----------------------------------------------------------
+
+svn proplist --revprop -r0 https://<repo url>>
+svn propdel --revprop -r0 svn:rdump-lock http://192.168.56.128:9880/test
+
+
