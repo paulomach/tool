@@ -1,28 +1,34 @@
 #!/bin/bash
 
 if [[ $1 = "-h" || $1 = "--help" || -z $1 ]]; then
-	echo "Dump file for Oracle XE"
+	echo "Oracle Database 11gR2 Backup generator (datapump wrapper)"
 	echo "Usage:"
-	echo "dumdb username <password>"
+	echo "dumpdb [USERNAME] [DB] <PASSWORD>"
+	echo "PASSWORD must be set when not equal to USERNAME"
 	exit
 fi
 
-pass=$2
+pass=$3
 pass=${pass:=$1}
 DATE=$(date +%Y-%m-%d)
 user="$1/${pass}"
 file="$1-${DATE}.dmp"
+db=$2
+DBPATH="/usr/lib/oracle/admin/XE/dpdump/"
 
-exp userid=${user}@xe statistics=none owner=$1 file=${file}
+expdp ${user}@${db}  schemas=$1 dumpfile=${file}
 
-if [[ $? = 0 ]]; then
-	echo "Dump at file ${PWD}/${file}"
+
+if [[ $? = 0 && ${db} = 'xe' ]]; then
+	sudo mv ${DBPATH}/${file} ${PWD}
+	echo -e "\nDump at file ${PWD}/${file}"
 	echo "Create zip [Y/n]?"
 	read -s -n 1 zipcreate
 	zipcreate=${zipcreate:="Y"}
-	if [[ ${zipcreate} = 'Y' ]]; then
-		echo "zipcreate"
+	if [[ ${zipcreate} = 'Y' || ${zipcreate} = 'y' ]]; then
 		zip -9 -r ${file}.zip $file
 	fi
+else
+	echo "Dump stored in the remote server"
 fi
 
