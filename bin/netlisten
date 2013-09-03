@@ -1,0 +1,9 @@
+#!/bin/sh
+# forever loop
+while :
+do
+        echo "starting new netcat.. listening on tcp $1 and logging to /tmp/netcat.log"
+        netcat -l -p $1 >> /tmp/netcat.log
+        # wait for process/pid to stop
+        wait $!
+done

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+REMOTEPORT="49201"
+LOCALPORT="40000"
+
+echo "Forward to local port ${LOCALPORT}"
+echo "Ctrl-C to exit"
+ 
+ssh -N -C -L ${LOCALPORT}:192.168.1.5:${REMOTEPORT} toolcode $1
+

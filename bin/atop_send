@@ -1,0 +1,17 @@
+#!/bin/bash
+
+server=$1
+station="03"
+ipdindex="002"
+tagmode="000"
+cor=3
+estado=1
+
+for i in $(seq -w 2 1 18)
+do
+	msg="${station}${i}DSP${ipdindex}0${i}${tagmode}${cor}${estado}^"
+	echo "${msg} to server ${server}"
+	echo -e "${msg}\n\r" > /dev/tcp/${server}
+	sleep 0.1
+done
+
