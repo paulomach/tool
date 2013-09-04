@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [[ $1 = "-h" ]]; then
+	echo "Usage:"
+	echo "$ barcoder"
+	exit
+fi
+
+while true; do
+	echo "Input code: "
+	read code
+	[[ ${code} = "0" ]] && exit
+	echo ${code} | barcode -S -e code128 -o barcode-${code}.svg
+done

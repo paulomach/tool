@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for code in $(cat $1); do
+	
+	echo ${code} | barcode -S -e code128 -o barcode-${code}.svg
+
+done
