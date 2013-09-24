@@ -1,7 +1,19 @@
 #!/bin/sh
 
-for code in $(cat $1); do
-	
-	echo ${code} | barcode -S -e code128 -o barcode-${code}.svg
+if [[ -z $1 || $1 = "-h" ]]; then
+	echo "Usage:"
+	echo "barcoder-file <mode> <input_file>"
+	echo "mode:"
+	echo -e "\t 1 - One file for all"
+	echo -e "\t m - One file for each"
+	exit
+fi
 
-done
+if [[ $1 = "1" ]]; then
+	barcode -e 128 -u mm -i ${2} -t 2x15+20+20-20-20 -o ${2}.ps
+	ps2pdf ${2}.ps ${2%%.*}.pdf
+else
+	for code in $(cat ${2}); do	
+		echo ${code} | barcode -S -e code128 -o barcode-${code}.svg
+	done
+fi
