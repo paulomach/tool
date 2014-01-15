@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+	echo "Usage:"
+	echo "mkprojectdir <project_name>"
+	exit
+fi
+
+echo "Initialization of project structure..."
+
+mkdir -v -p ${1}/fotos ${1}/dumps ${1}/layout ${1}/scripts ${1}/docs ${1}/testes
+
+echo "Done"
