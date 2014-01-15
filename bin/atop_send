@@ -1,17 +1,32 @@
 #!/bin/bash
 
+if [[ -z $1 ]]; then
+	echo "Send command messages to Atop gateway"
+	echo "Usage:"
+	echo "atop_send ip/port <led_state> <cor>"
+	exit
+fi
+
 server=$1
-station="03"
-ipdindex="002"
+station="01"
 tagmode="000"
-cor=3
-estado=1
+cor=${3:-3}
+estado=${2:-1}
+j=10
 
-for i in $(seq -w 2 1 18)
+# cycle every concentrator
+for ipdindex in $(seq -w 15)
 do
-	msg="${station}${i}DSP${ipdindex}0${i}${tagmode}${cor}${estado}^"
-	echo "${msg} to server ${server}"
-	echo -e "${msg}\n\r" > /dev/tcp/${server}
-	sleep 0.1
+	# cycle configured nodes
+	for i in $(seq -w 120)
+	do
+		msg="${station}${j}DSP0${ipdindex}${i}${tagmode}${cor}${estado}^ "
+		echo "${msg} to server ${server}"
+		echo -e "${msg}\n\r" > /dev/tcp/${server}
+		sleep 0.05
+		let j++;
+		if [[ $j -eq 100 ]]; then
+			j=10
+		fi
+	done
 done
-
