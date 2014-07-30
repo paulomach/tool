@@ -1,0 +1,4 @@
+#!/bin/bash
+
+svnp diff -r 'PREV' | colordiff
+

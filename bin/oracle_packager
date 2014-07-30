@@ -1,0 +1,26 @@
+#!/bin/bash
+
+tmp_pkg=$(mktemp)
+echo "CREATE OR REPLACE PACKAGE $1 AS" >> ${tmp_pkg}
+tmp_body=$(mktemp)
+echo "CREATE OR REPLACE PACKAGE BODY $1 AS" >> ${tmp_body}
+
+for i in $(ls *.{fnc,prc}|grep -v DATAGEN); do
+
+	# header
+	head $i -n $(grep -n -m 1 -E "\ IS$" $i |cut -d: -f1) |sed -e "s/\(CREATE\ OR\ REPLACE\)//"|sed -e "s/\ IS$/;/" >> ${tmp_pkg}
+	
+	# body
+	cat $i | sed -e "s/\(CREATE\ OR\ REPLACE\|^\/$\)//" >> ${tmp_body}
+	echo >> ${tmp_body}
+done
+
+echo -e "END $1; \n/" >> ${tmp_pkg}
+echo -e "END $1; \n/" >> ${tmp_body}
+
+mv ${tmp_pkg} "$1-header.sql"
+mv ${tmp_body} "$1-body.sql"
+
+echo "Package headers written to $1-header.sql"
+echo "Package body written to $1-body.sql"
+wrap iname=$1-body.sql

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $1 = "-h" ]]; then
+	echo "Wrap/obfuscated Oracle procedures and functions"
+	echo "Call in the source dir"
+	exit
+fi
+
+for i in $(ls *.{prc,fnc});
+do
+	wrap iname=$i &> /dev/null
+done
+
+rm -rf wrapped_objects
+mkdir wrapped_objects
+
+mv *.plb wrapped_objects

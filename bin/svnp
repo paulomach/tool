@@ -1,0 +1,4 @@
+#!/bin/bash
+
+svn --password qiu6723., "$@"
+
