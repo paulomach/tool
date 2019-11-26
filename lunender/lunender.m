@@ -21,7 +21,7 @@ function lunender (qtd_ped, qtd_est, atend_min, atend_max)
 
   if length(qtd_est)!=length(qtd_ped)
     printf("vetor de pedidos tem tamanho diferente de vetor de estoque\n");
-    break
+    exit
   endif
 
   % calc grade

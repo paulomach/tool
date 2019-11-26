@@ -1,12 +1,12 @@
 Version=1
-RightMargin=80
-Indent=4
+RightMargin=76
+Indent=2
 UseTabCharacter=FALSE
 TabCharacterSize=2
 AlignDeclarationGroups=TRUE
 AlignAssignmentGroups=TRUE
 KeywordCase=1
-IdentifierCase=1
+IdentifierCase=0
 UseSpecialCase=TRUE
 ItemList.Format=1
 ItemList.Align=TRUE

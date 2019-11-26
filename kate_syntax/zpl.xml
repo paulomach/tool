@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="ZPL" version="1" style="zpl" kateversion="5.0" section="Markup" extensions="*.zpl;*.prn" mimetype="application/x-zpl" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <RegExpr attribute="Comment" String="(\^FX(?&lt;=.+?(?=\^)))" context="#stay" />
+        <AnyChar attribute="Operator" String="^" context="#stay"/>
+        <AnyChar attribute="Separator" String="," context="#stay"/>
+        <RegExpr attribute="Keywords" String="(?&lt;=(\^|\~))([A-Z]{2}|[A-Z][0-9])" context="#stay"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsBuiltIn" spellChecking="false"/>
+      <itemData name="Values" defStyleNum="dsVariable" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsImport" spellChecking="false"/>
+      <itemData name="Separator" defStyleNum="dsControlFlow" spellChecking="false"/>
+      <itemData name="Comment" defStyleNum="dsComment" spellChecking="true"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

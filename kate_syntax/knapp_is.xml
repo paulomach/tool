@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="KSI" version="1" style="ksi" kateversion="5.0" section="Markup" extensions="*.ksi" mimetype="application/x-csv" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <list name="keys">
+        <item>FP</item>
+        <item>EV</item>
+        <item>WP</item>
+       <item>CO</item>
+       <item>LD</item>
+       <item>WS</item>
+       <item>ADD</item>
+       <item>WPO</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <AnyChar attribute="Operator" String=";" context="#stay"/>
+        <AnyChar attribute="Attrib" String="=" context="#stay"/>
+        <keyword attribute="Keywords" String="keys" context="#stay"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsFunction" spellChecking="false"/>
+      <itemData name="Values" defStyleNum="dsVariable" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsVariable" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

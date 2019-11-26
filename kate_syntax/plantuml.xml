@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="plantUML" version="1" style="plantuml" kateversion="5.0" section="Markup" extensions="*.iuml" mimetype="application/x-plantuml" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <list name="operators">
+      <item>deactivate</item>
+      <item>activate</item>
+      <item>loop</item>
+      <item>end</item>
+      <item>alt</item>
+      <item>else</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <keyword attribute="Operator" String="operators" context="#stay"/>
+        <RegExpr attribute="Keywords" String="@(startuml|enduml)" context="#stay"/>
+        <RegExpr attribute="Breaks" String="!\w+" context="#stay" />
+        <RegExpr attribute="Symbol" String="-(&gt;|&lt;)" context="#stay" />
+        <RegExpr attribute="Symbol" String=":" context="#stay" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsBuiltIn" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsControlFlow" spellChecking="false"/>
+      <itemData name="Symbol" defStyleNum="dsControlFlow" spellChecking="false"/>
+      <itemData name="Breaks" defStyleNum="dsImport" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

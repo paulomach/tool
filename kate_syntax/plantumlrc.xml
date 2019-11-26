@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="plantUMLrc" version="1" style="plantumlrc" kateversion="5.0" section="Configuration" extensions="*umlrc" mimetype="application/x-plantuml" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <RegExpr attribute="Operator" String="\#([A-F]|[0-9]){6}" context="#stay"/>
+        <RegExpr attribute="Keywords" String="skinparam" context="#stay"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsBuiltIn" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsImport" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="RDP" version="1" style="rdesktop" kateversion="5.0" section="Configuration" extensions="*.rdp" mimetype="application/x-rdp" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <RegExpr attribute="Symbol" String=":" context="#stay" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Symbol" defStyleNum="dsControlFlow" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="CSV" version="1" style="csv" kateversion="5.0" section="Markup" extensions="*.csv" mimetype="application/x-csv" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <AnyChar attribute="Operator" String=";" context="#stay"/>
+        <AnyChar attribute="Attrib" String="=" context="#stay"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsKeyword" spellChecking="false"/>
+      <itemData name="Values" defStyleNum="dsVariable" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsVariable" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>

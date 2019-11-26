@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language>
+<language name="DDC" version="1" style="python" indenter="python" kateversion="5.0" section="Markup" extensions="*.ddc" mimetype="application/x-ddc" casesensitive="1" author="Paulo Machado" license="">
+  <highlighting>
+    <list name="keys">
+      <item>Bc</item>
+      <item>Check</item>
+      <item>ClusterNo</item>
+      <item>CntNo</item>
+      <item>Cover</item>
+      <item>LType</item>
+      <item>Loc</item>
+      <item>Msg</item>
+      <item>OrdNo</item>
+      <item>OrdStat</item>
+      <item>OrdTyp</item>
+      <item>OrderNo</item>
+      <item>Pcs</item>
+      <item>Prio</item>
+      <item>QStat</item>
+      <item>QType</item>
+      <item>Seq</item>
+      <item>Spf</item>
+      <item>Station</item>
+      <item>TrayNo</item>
+      <item>Ts</item>
+      <item>Typ</item>
+      <item>UsrId</item>
+      <item>Vpe</item>
+    </list>
+    <list name="breaks">
+      <item>&lt;r&gt;</item>
+      <item>&lt;l&gt;</item>
+      <item>&lt;cr&gt;</item>
+      <item>&lt;lf&gt;</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#pop">
+        <keyword attribute="Keywords" String="keys" context="#stay"/>
+        <keyword attribute="Breaks" String="breaks" context="#stay"/>
+        <AnyChar attribute="Operator" String="&amp;?" context="#stay"/>
+        <AnyChar attribute="Attrib" String="=" context="#stay"/>
+        <RegExpr String="(?&lt;=\=)(.*?)(?=\&amp;)" attribute="Values" context="#stay" />
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" spellChecking="false"/>
+      <itemData name="Keywords" defStyleNum="dsKeyword" spellChecking="false"/>
+      <itemData name="Values" defStyleNum="dsVariable" spellChecking="false"/>
+      <itemData name="Operator" defStyleNum="dsError" spellChecking="false"/>
+      <itemData name="Attrib" defStyleNum="dsFloat" spellChecking="false"/>
+      <itemData name="Breaks" defStyleNum="dsControlFlow" spellChecking="false"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="0"/>
+  </general>
+</language>
